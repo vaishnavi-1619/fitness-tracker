@@ -6,10 +6,12 @@ import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.repository.UserRepository;
 import com.fitness.userservice.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -59,5 +61,11 @@ public class UserServiceImpl implements UserService {
         return userResponse;
 
 
+    }
+
+    @Override
+    public Boolean existByUserId(String userId) {
+        log.info("calling user service for {]", userId);
+        return userRepository.existsById(userId);
     }
 }
